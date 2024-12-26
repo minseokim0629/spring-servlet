@@ -5,6 +5,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>hellospring</module>
+  	<module>hello</module>
+  	<module>emaillist03</module>
+  	<module>guestbook03</module>
   </modules>
 </project>
