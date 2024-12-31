@@ -1,28 +1,23 @@
 package guestbook.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import guestbook.repository.template.JdbcContext;
-import guestbook.repository.template.StatementStrategy;
 import guestbook.vo.GuestbookVo;
 
 @Repository
 public class GuestbookRepository {
 	private JdbcContext jdbcContext;
-	private DataSource dataSource;
 	
 	public GuestbookRepository(JdbcContext jdbcContext, DataSource dataSource) {
 		this.jdbcContext = jdbcContext;
-		this.dataSource = dataSource;
 	}
 	
 	public int insert(GuestbookVo vo) {
@@ -51,7 +46,24 @@ public class GuestbookRepository {
 	}
 	
 	public List<GuestbookVo> findAll() {
-		List<GuestbookVo> result = new ArrayList<>();
+		return jdbcContext.queryForList(
+				"select id, name, contents, date_format(reg_date, '%Y-%m-%d %h:%i:%s') from guestbook order by reg_date desc", 
+				new RowMapper<GuestbookVo>() {
+
+					@Override
+					public GuestbookVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+						GuestbookVo vo = new GuestbookVo();
+						
+						vo.setId(rs.getLong(1));
+						vo.setName(rs.getString(2));
+						vo.setContents(rs.getString(3));
+						vo.setRegDate(rs.getString(4));
+						
+						return vo;
+					}
+					
+				});
+		/*List<GuestbookVo> result = new ArrayList<>();
 		try (
 			// 주로 생성되는 코드를 적는다
 			// pstmt에 binding하는 코드가 있으면 rs를 올리기 어렵지만 binding 하는 코드가 없으니 rs를 올렸다
@@ -78,7 +90,7 @@ public class GuestbookRepository {
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
-		return result;
+		return result;*/
 	}
 	
 	public int deleteByIdAndPassword(Long id, String password) {
