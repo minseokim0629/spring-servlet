@@ -11,6 +11,13 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>	<!-- /user로 들어가는 모든 url 지원 /user/*로만 하면 two depth만 지원 -->
+			<bean class="hellospring.interceptor.MyInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<context:annotation-config />
 	<context:component-scan base-package="hellospring.controller" />
 
