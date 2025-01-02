@@ -16,7 +16,7 @@ import guestbook.vo.GuestbookVo;
 public class GuestbookRepository {
 	private JdbcContext jdbcContext;
 	
-	public GuestbookRepository(JdbcContext jdbcContext, DataSource dataSource) {
+	public GuestbookRepository(JdbcContext jdbcContext) {
 		this.jdbcContext = jdbcContext;
 	}
 	
