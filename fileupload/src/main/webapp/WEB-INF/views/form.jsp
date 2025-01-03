@@ -15,6 +15,7 @@
 		
 		<label>파일1:</label>
 		<input type="file" name="file">
+		<input type="file" name="file">
 		<br><br>
 		
 		<br>
