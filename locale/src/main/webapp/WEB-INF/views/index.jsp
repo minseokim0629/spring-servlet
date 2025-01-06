@@ -13,7 +13,7 @@
 window.addEventListener("load", function() {
 	anchors = document.querySelectorAll('#languages a');
 	anchors.forEach(function(el){
-		el.addEventListener("click", function(){
+		el.addEventListener("click", function(event){
 			event.preventDefault();
 			console.log(this.getAttribute('data-lang'));
 			document.cookie = 
