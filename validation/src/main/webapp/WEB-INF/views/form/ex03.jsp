@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Bean Validation</h1>
-<form:form 
+<form:form
 	modelAttribute="user"
 	action="${pageContext.request.contextPath }/ex03" 
 	method="post">
