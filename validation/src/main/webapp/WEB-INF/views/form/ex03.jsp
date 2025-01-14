@@ -13,7 +13,7 @@
 <body>
 <h1>Bean Validation</h1>
 <form:form 
-	modelAttribute="userVo"
+	modelAttribute="user"
 	action="${pageContext.request.contextPath }/ex03" 
 	method="post">
 	<label for="name">name:</label>
