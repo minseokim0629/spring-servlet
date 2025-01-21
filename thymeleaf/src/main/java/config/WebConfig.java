@@ -23,7 +23,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @EnableWebMvc
 @ComponentScan({"controller"})
 public class WebConfig implements WebMvcConfigurer {
-    // Resouce Handler
+    // Resource Handler
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
